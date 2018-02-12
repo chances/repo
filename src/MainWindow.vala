@@ -16,7 +16,11 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
     public bool confirmed { get; set; default = false; }
 
     public MainWindow (Repo.Application app) {
-        Object (application: app);
+        Object (application: app,
+                resizable: false,
+                width_request: 500,
+                height_request: 200);
+
         this.app = app;
     }
 
@@ -24,9 +28,9 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
         repositories = new Repo.Services.Repositories ();
         headerbar = new Repo.Widgets.HeaderBar ();
 
-        move (settings.pos_x, settings.pos_y);
-        set_default_size (settings.window_width, settings.window_height);
-        resizable = false;
+        window_position = Gtk.WindowPosition.CENTER;
+
+        move (settings.window_x, settings.window_y);
 
         build_ui ();
 
