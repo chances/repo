@@ -21,7 +21,7 @@ executable(
     'src/Main.vala',
     'src/Application.vala',
     'src/MainWindow.vala',
-    'src/config.vala',
+    'build/src/config.vala',
     'src/Services/Settings.vala',
     'src/Services/Repositories.vala',
     'src/Widgets/HeaderBar.vala',
