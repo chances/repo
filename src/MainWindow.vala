@@ -57,19 +57,19 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
         spinner.width_request = 32;
         spinner.height_request = 32;
 
-        var loading_label = new Gtk.Label (_("Fetching your system's PPA repositories…"));
+        var loading_label = new Gtk.Label (_("Fetching your system's software repositories…"));
 
-        var loading = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
+        var loading = new Gtk.Box (Gtk.Orientation.VERTICAL, 12);
         loading.halign = Gtk.Align.CENTER;
         loading.valign = Gtk.Align.CENTER;
         loading.add (spinner);
         loading.add (loading_label);
 
-        var alert_label = new Gtk.Label (_("Unable to Get PPA Repositories"));
+        var alert_label = new Gtk.Label (_("Unable to Fetch Software Repositories"));
+        alert_label.halign = Gtk.Align.CENTER;
+        alert_label.valign = Gtk.Align.CENTER;
 
         stack = new Gtk.Stack ();
-        stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
-        stack.vhomogeneous = true;
         stack.vexpand = true;
         stack.add (loading);
         stack.add_named (repo_list, "repos");

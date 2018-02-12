@@ -17,7 +17,7 @@ public class Repo.Widgets.HeaderBar : Gtk.HeaderBar {
 
     construct {
         var add_repo = new Gtk.Button.from_icon_name ("list-add", Gtk.IconSize.LARGE_TOOLBAR);
-        add_repo.tooltip_text = _("Add PPA Repository");
+        add_repo.tooltip_text = _("Add Software Repository");
 		add_repo.clicked.connect (() => {
 			add_repo_clicked();
         });
