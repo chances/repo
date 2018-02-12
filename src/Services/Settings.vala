@@ -7,10 +7,8 @@
 */
 
 public class Repo.Services.Settings : Granite.Services.Settings {
-    public int pos_x { get; set; }
-    public int pos_y { get; set; }
-    public int window_width { get; set; default = 1000; }
-    public int window_height { get; set; default = 600; }
+    public int window_x { get; set; }
+    public int window_y { get; set; }
 
     public Settings () {
         base (Constants.PACKAGE_NAME);
