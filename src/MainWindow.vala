@@ -44,28 +44,27 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
         );
 
         set_titlebar (headerbar);
-        //  add (main_window);
 
         set_border_width (0);
 
-        delete_event.connect ((e) => {
-            return before_destroy ();
+
+
+        state_changed.connect (() => {
+            save_position ();
         });
-    }
-
-    public bool before_destroy () {
-        app.get_active_window ().destroy ();
-        on_destroy ();
-        return true;
-    }
-
-    public void on_destroy () {
-        Gtk.main_quit ();
     }
 
     public void show_app () {
         show_all ();
         show ();
         present ();
+    }
+
+    public void save_position () {
+        int x, y;
+        this.get_position (out x, out y);
+        settings.window_x = x;
+        settings.window_y = y;
+        settings.save ();
     }
 }

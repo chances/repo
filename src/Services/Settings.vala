@@ -13,4 +13,8 @@ public class Repo.Services.Settings : Granite.Services.Settings {
     public Settings () {
         base (Constants.PACKAGE_NAME);
     }
+
+    public void save () {
+        this.schema.apply ();
+    }
 }
