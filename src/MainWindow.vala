@@ -11,6 +11,7 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
 
     public Repo.Services.Repositories repositories;
     public Repo.Widgets.HeaderBar headerbar;
+    public Gtk.Stack stack;
 
     public bool edited { get; set; default = false; }
     public bool confirmed { get; set; default = false; }
@@ -40,18 +41,45 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
     private void build_ui () {
         //  Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = settings.dark_theme;
 
-        var css_provider = new Gtk.CssProvider ();
-        css_provider.load_from_resource ("/com/github/chances/repo/stylesheet.css");
-        
-        Gtk.StyleContext.add_provider_for_screen (
-            Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        );
+        try {
+            var css_provider = new Gtk.CssProvider ();
+            css_provider.load_from_resource ("/com/github/chances/repo/stylesheet.css");
+            
+            Gtk.StyleContext.add_provider_for_screen (
+                Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            );
+        } catch (GLib.Error e) {
+            critical (e.message);
+        }
 
         set_titlebar (headerbar);
 
         set_border_width (0);
 
+        var spinner = new Gtk.Spinner ();
+        spinner.active = true;
+        spinner.width_request = 32;
+        spinner.height_request = 32;
 
+        var loading_label = new Gtk.Label (_("Fetching your system's PPA repositories…"));
+
+        var loading = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
+        spinner.halign = Gtk.Align.CENTER;
+        spinner.valign = Gtk.Align.CENTER;
+        loading.add (spinner);
+        loading.add (loading_label);
+
+        var alert_label = new Gtk.Label (_("Unable to Get PPA Repositories"));
+
+        stack = new Gtk.Stack ();
+        stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
+        stack.vhomogeneous = true;
+        stack.height_request = 150;
+        stack.add (loading);
+        //  stack.add_named (repo_list, "repos");
+        stack.add_named (alert_label, "alert");
+
+        add (stack);
 
         state_changed.connect (() => {
             save_position ();
