@@ -7,7 +7,7 @@
 */
 
 public class Repo.Widgets.HeaderBar : Gtk.HeaderBar {
-    public signal void add_repo_clicked();
+    public signal void add_repo_clicked ();
 
     public HeaderBar () {
         Object (title: APP_NAME,
@@ -19,9 +19,9 @@ public class Repo.Widgets.HeaderBar : Gtk.HeaderBar {
         var add_repo = new Gtk.Button.from_icon_name ("list-add", Gtk.IconSize.LARGE_TOOLBAR);
         add_repo.tooltip_text = _("Add Software Repository");
 		add_repo.clicked.connect (() => {
-			add_repo_clicked();
+            add_repo_clicked ();
         });
-        
+
 		pack_start (add_repo);
     }
 }

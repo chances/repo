@@ -7,15 +7,17 @@
 */
 
 public class Repo.Widgets.RepositoryList : Gtk.Box {
-    private Gtk.ListBox list;
+    Gtk.ListBox list;
 
     public RepositoryList () {
         Object (orientation: Gtk.Orientation.VERTICAL,
+                hexpand: true,
                 vexpand: true);
     }
 
     construct {
         list = new Gtk.ListBox ();
+        list.hexpand = true;
         list.vexpand = true;
         list.selection_mode = Gtk.SelectionMode.NONE;
 

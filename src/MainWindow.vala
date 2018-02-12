@@ -9,7 +9,7 @@
 public class Repo.MainWindow : Gtk.ApplicationWindow {
     private Repo.Application app;
 
-    public Repo.Services.Repositories repositories;
+    public Repo.Services.Repositories repos;
     public Repo.Widgets.HeaderBar headerbar;
     public Repo.Widgets.RepositoryList repo_list;
     public Gtk.Stack stack;
@@ -27,7 +27,7 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
     }
 
     construct {
-        repositories = new Repo.Services.Repositories ();
+        repos = new Repo.Services.Repositories ();
         headerbar = new Repo.Widgets.HeaderBar ();
         repo_list = new Repo.Widgets.RepositoryList ();
 
@@ -77,9 +77,7 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
 
         add (stack);
 
-        state_changed.connect (() => {
-            save_position ();
-        });
+        state_changed.connect (save_position);
     }
 
     public void show_app () {
