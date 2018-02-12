@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=Repo
-GenericName=Repo App
+GenericName=Software Sources Editor
 Comment=Manage PPA repository sources
-Categories=System;Utility;
+Categories=Settings;System;Utility;
 Exec=com.github.chances.repo
 Icon=com.github.chances.repo
 Terminal=false
