@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Repo
+GenericName=Repo App
+Comment=Manage PPA repository sources.
+Categories=System;Utility;
+Exec=com.github.chances.repo
+Icon=com.github.chances.repo
+Terminal=false
+Type=Application
+X-GNOME-Gettext-Domain=chances.repo
+Keywords=Utility;PPA;Repository;
+X-GNOME-UsesNotifications=true

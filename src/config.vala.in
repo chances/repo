@@ -1,0 +1,20 @@
+/*
+ * Copyright (c) 2018 Chance Snow (https://chancesnow.me)
+ *
+ * See LICENSE file for full license terms.
+ *
+ * Chance Snow <hello@chancesnow.me>
+*/
+
+namespace Constants {
+   public const string DATADIR = "@DATADIR@";
+   public const string PKGDATADIR = "@PKGDATADIR@";
+   public const string PACKAGE_NAME = "@EXEC_NAME@";
+   public const string EXEC_NAME = "@EXEC_NAME@";
+   public const string TERMINAL_NAME = "@TERMINAL_NAME@";
+   public const string GETTEXT_PACKAGE = "@GETTEXT_PACKAGE@";
+   public const string RELEASE_NAME = "@RELEASE_NAME@";
+   public const string VERSION = "@VERSION@";
+   public const string VERSION_INFO = "@VERSION_INFO@";
+   public const string INSTALL_PREFIX = "@PREFIX@";
+}
