@@ -11,6 +11,7 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
 
     public Repo.Services.Repositories repositories;
     public Repo.Widgets.HeaderBar headerbar;
+    public Repo.Widgets.RepositoryList repo_list;
     public Gtk.Stack stack;
 
     public bool edited { get; set; default = false; }
@@ -19,8 +20,8 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
     public MainWindow (Repo.Application app) {
         Object (application: app,
                 resizable: false,
-                width_request: 500,
-                height_request: 200);
+                width_request: 700,
+                height_request: 600);
 
         this.app = app;
     }
@@ -28,6 +29,7 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
     construct {
         repositories = new Repo.Services.Repositories ();
         headerbar = new Repo.Widgets.HeaderBar ();
+        repo_list = new Repo.Widgets.RepositoryList ();
 
         window_position = Gtk.WindowPosition.CENTER;
 
@@ -39,8 +41,6 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
     }
 
     private void build_ui () {
-        //  Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = settings.dark_theme;
-
         try {
             var css_provider = new Gtk.CssProvider ();
             css_provider.load_from_resource ("/com/github/chances/repo/stylesheet.css");
@@ -64,8 +64,8 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
         var loading_label = new Gtk.Label (_("Fetching your system's PPA repositories…"));
 
         var loading = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
-        spinner.halign = Gtk.Align.CENTER;
-        spinner.valign = Gtk.Align.CENTER;
+        loading.halign = Gtk.Align.CENTER;
+        loading.valign = Gtk.Align.CENTER;
         loading.add (spinner);
         loading.add (loading_label);
 
@@ -74,9 +74,9 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
         stack = new Gtk.Stack ();
         stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
         stack.vhomogeneous = true;
-        stack.height_request = 150;
+        stack.vexpand = true;
         stack.add (loading);
-        //  stack.add_named (repo_list, "repos");
+        stack.add_named (repo_list, "repos");
         stack.add_named (alert_label, "alert");
 
         add (stack);
