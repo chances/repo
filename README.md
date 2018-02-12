@@ -15,14 +15,19 @@ You can install Repo by compiling it from source.
 ### Dependencies
 
 Ensure you have these dependencies installed beforehand:
-- `vala`
-- `gtk+-3.0>=3.18`
-- `granite>=0.5.0`
-- `glib-2.0`
-- `gee-0.8`
-- `gobject-2.0`
 - `meson`
+- `vala`
+- `glib-2.0`
+- `gobject-2.0`
+- `gtk+-3.0` >= 3.18
+- `gee-0.8`
+- `granite` >= 0.5.0
+- `software-properties-common`
 
 ### Building
 
-Run `make` in the project's root folder.
+Run `make build` in the project's root folder.
+
+### Installing
+
+Run `make install`
