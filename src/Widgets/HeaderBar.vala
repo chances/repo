@@ -6,19 +6,22 @@
  * Chance Snow <hello@chancesnow.me>
 */
 
-public class Repo.Widgets.HeaderBar : Gtk.Box {
-    private Gtk.HeaderBar headerbar;
+public class Repo.Widgets.HeaderBar : Gtk.HeaderBar {
+    public signal void add_repo_clicked();
 
     public HeaderBar () {
-        Object (orientation: Gtk.Orientation.VERTICAL);
+        Object (title: APP_NAME,
+                show_close_button: true,
+                has_subtitle: true);
     }
 
     construct {
-        headerbar = new Gtk.HeaderBar ();
-
-        headerbar.set_title (APP_NAME);
-        headerbar.set_show_close_button (true);
-
-        pack_start (headerbar, true, true, 0);
+        var add_repo = new Gtk.Button.from_icon_name ("list-add", Gtk.IconSize.LARGE_TOOLBAR);
+        add_repo.tooltip_text = _("Add PPA Repository");
+		add_repo.clicked.connect (() => {
+			add_repo_clicked();
+        });
+        
+		pack_start (add_repo);
     }
 }
