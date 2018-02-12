@@ -1,4 +1,4 @@
-# Repo
+# Repo ![Travis CI Build Status](https://travis-ci.org/chances/repo.svg?branch=master)
 
 Manage your system's Personal Package Archives (PPA) repository sources.
 
