@@ -50,6 +50,12 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
 
         set_titlebar (headerbar);
 
+        headerbar.add_repo_clicked.connect (() => {
+            message ("Clicked Add Repo button");
+
+            repo_list.add_source ("Foo");
+        });
+
         set_border_width (0);
 
         var spinner = new Gtk.Spinner ();
@@ -77,6 +83,9 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
 
         add (stack);
 
+        repos.connection_succeeded.connect (show_repos);
+        repos.connection_failed.connect (show_alert);
+
         state_changed.connect (save_position);
     }
 
@@ -84,6 +93,18 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
         show_all ();
         show ();
         present ();
+
+        repos.connect ();
+    }
+
+    public void show_alert () {
+        stack.visible_child_name = "alert";
+    }
+
+    public void show_repos () {
+        message ("Connected to Repositories DBus");
+        repo_list.software_properties = repos.software_properties;
+        stack.visible_child_name = "repos";
     }
 
     public void save_position () {

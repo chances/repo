@@ -9,6 +9,8 @@
 public class Repo.Widgets.RepositoryList : Gtk.Box {
     Gtk.ListBox list;
 
+    public Repo.Services.SoftwareProperties software_properties { private get; set; }
+
     public RepositoryList () {
         Object (orientation: Gtk.Orientation.VERTICAL,
                 hexpand: true,
@@ -22,5 +24,9 @@ public class Repo.Widgets.RepositoryList : Gtk.Box {
         list.selection_mode = Gtk.SelectionMode.NONE;
 
         add (list);
+    }
+
+    public new void add_source (string source) {
+        list.add (new Gtk.Label(source));
     }
 }
