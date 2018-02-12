@@ -41,16 +41,12 @@ public class Repo.MainWindow : Gtk.ApplicationWindow {
     }
 
     private void build_ui () {
-        try {
-            var css_provider = new Gtk.CssProvider ();
-            css_provider.load_from_resource ("/com/github/chances/repo/stylesheet.css");
-            
-            Gtk.StyleContext.add_provider_for_screen (
-                Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-            );
-        } catch (GLib.Error e) {
-            critical (e.message);
-        }
+        var css_provider = new Gtk.CssProvider ();
+        css_provider.load_from_resource ("/com/github/chances/repo/stylesheet.css");
+        
+        Gtk.StyleContext.add_provider_for_screen (
+            Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        );
 
         set_titlebar (headerbar);
 
